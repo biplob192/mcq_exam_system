@@ -8,8 +8,11 @@ const baseURL = store.state.baseUrl;
 
 const Api = axios.create({
   baseURL: baseURL,
-  timeout: 5000,
-  headers: { Accept: "application/json", },
+  // timeout: 5000,
+  headers: {
+    Accept: "application/json",
+    Authorization: "Bearer " + localStorage.getItem("access_token"),
+  },
 });
 
 // const Api = axios.create({
@@ -21,16 +24,3 @@ const Api = axios.create({
 // });
 
 export default Api;
-
-
-////////////////////////////////////
-
-// export default function api() {
-//   return axios.create({
-//     baseURL: baseURL,
-//     headers: {
-//       Accept: "application/json",
-//       Authorization: "bearer " + access_token,
-//     },
-//   });
-// }
