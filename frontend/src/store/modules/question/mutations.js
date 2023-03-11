@@ -4,4 +4,6 @@ export const SET_QUESTIONS = (state, response) => {
 
 export const SET_QUESTION = (state, response) => {
     state.question = response.data;
+
+    console.log('SET_QUESTION');
 };

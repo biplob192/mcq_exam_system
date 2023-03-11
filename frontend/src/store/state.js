@@ -3,8 +3,8 @@ export default {
   authUrl: "http://localhost:8000/api/auth/",
   apiUrlV1: "http://localhost:8000/api/mcq_exam_v1/",
 
-  access_token: "",
-  refresh_token: "",
+  access_token: null,
+  refresh_token: null,
 
   user_info: "",
 

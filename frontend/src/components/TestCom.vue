@@ -9,20 +9,10 @@ export default {
   data() {
     return {
       // books: this.$store.state.books,
+      access_token: this.$store.state.access_token,
+      // user_info: this.$store.state.user_info,
       singleQuestion: "",
     };
-  },
-
-  mounted() {
-    
-    this.getQuestions();
-  },
-
-  methods: {
-    ...mapActions(["getQuestions"]),
-
-    
-
   },
 
   computed: {
@@ -37,13 +27,29 @@ export default {
 
     // Second method
     // ...mapState(['user']),
+    ...mapState("question", ["question", "questions"]),
+
     ...mapState({
       user: "user",
       books: "books",
       questions: "questions",
       data: (state) => state.sample.data,
+      // user_info: (state) => state.auth.user_info,
+      user_info: (state) => state.auth.user_info,
     }),
   },
+
+  mounted() {
+    if (this.$store.state.access_token) {
+      this.getQuestions();
+    }
+  },
+
+  methods: {
+    ...mapActions(["getQuestions"]),
+  },
+
+  
 };
 </script>
 
@@ -54,7 +60,12 @@ export default {
     </h3>
     <b>{{ data }}</b> from Test components.
 
-    <!-- {{ questions }} -->
+    <br>
+    <br>
+    This is from TestCom
+    <br>
+    
+    {{ question }}
     <!-- {{ singleQuestion }}; -->
     <p>User Info:</p>
     {{ user.name }} <br />
@@ -65,6 +76,7 @@ export default {
     <li v-for="book in books">{{ book.name }}, [Author: {{ book.author }}]</li>
 
     <p>Total Number of Students: {{ studentCount }}</p>
+    <!-- Token: {{ access_token }} -->
   </div>
 </template>
 

@@ -3,6 +3,7 @@ import store from "../../store";
 
 // const token = "11|tnLBsop1RIheIv4oXD1pI6h2ZApwr939XobDc6Wt";
 const access_token = localStorage.getItem("access_token");
+// const access_token = store.state.access_token;
 const baseURL = store.state.baseUrl;
 
 axios.defaults.headers.common["Authorization"] = "Bearer " + access_token;

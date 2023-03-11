@@ -41,7 +41,7 @@ export default {
     // this.$store.dispatch("sample/sampleAction");
 
     // this.getQuestions();
-    // this.getQuestion(1);
+    this.getQuestion(1);
     this.getSingleQuestion(1);
 
     // console.log("API base URL from mounted is: " + this.base_url);
@@ -111,4 +111,7 @@ export default {
   <h1>Home Page</h1>
   {{ questions != "" ? questions : "Questions not set yet!!" }}
   {{ singleQuestion }}
+  <br>
+  <br>
+  {{ question }}
 </template>

@@ -14,6 +14,8 @@
 <script>
 import axios from "axios";
 import Auth from "../../services/api/AuthApi";
+import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
+import { parse } from "@vue/compiler-dom";
 
 export default {
   name: "MyLogin",
@@ -30,7 +32,20 @@ export default {
     };
   },
 
+  computed: {
+    ...mapState(["access_token"]),
+    ...mapState("auth", ["login_response", "user_info"]),
+  },
+
+  mounted() {
+    console.log("login_response: " + this.login_response);
+    console.log("access_token: " + this.access_token);
+    console.log('Token: ' + localStorage.getItem("access_token"));
+  },
+
   methods: {
+    ...mapActions("auth", ["login"]),
+
     // 01. Use axios in the same page (DEMO for Login)
     // ----------------------------- //
 
@@ -93,8 +108,28 @@ export default {
     //     });
     // },
 
-
     // 03. Dispatch action (DEMO for Login)
+    // ----------------------------- //
+
+    // handleLogin: async function () {
+    //   let formData = new FormData();
+    //   formData.append("email", this.loginData.email);
+    //   formData.append("password", this.loginData.password);
+
+    //   try {
+    //     let info = await this.$store.dispatch("auth/login", formData);
+    //     let response = JSON.parse(info);
+    //     // console.log(response.status)
+
+    //     if (response.status == 200) {
+    //       this.$router.push({ name: "home" });
+    //     }
+    //   } catch (e) {
+    //     console.log(e);
+    //   }
+    // },
+
+    // 04. Call mapAction (DEMO for Login)
     // ----------------------------- //
 
     handleLogin: async function () {
@@ -103,9 +138,14 @@ export default {
       formData.append("password", this.loginData.password);
 
       try {
-        let info = await this.$store.dispatch("auth/login", formData);
-        console.log("login ok");
-        console.log(info);
+        let info = await this.login(formData);
+        let response = JSON.parse(info);
+        // console.log(response.status)
+
+        if (response.status == 200) {
+          this.$router.push({ name: "home" });
+          // window.location.assign("/");
+        }
       } catch (e) {
         console.log(e);
       }

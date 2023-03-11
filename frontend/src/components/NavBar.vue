@@ -3,14 +3,34 @@ import { RouterLink } from "vue-router";
 
 export default {
   name: "NavBar",
-  
-     methods: {
-          logout() {
-               console.log('Logout Clicked!!');
-          }
-     }
-     
-}
+
+  data() {
+    return {
+      logged_in: false,
+    };
+  },
+
+  created() {
+    this.setLoggedIn();
+  },
+
+  methods: {
+    logout() {
+      console.log("Logout Clicked!!");
+
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("refresh_token");
+      localStorage.removeItem("user_info");
+
+      window.location.assign("/login");
+    },
+    setLoggedIn() {
+      if (localStorage.getItem("access_token")) {
+        this.logged_in = true;
+      }
+    },
+  },
+};
 </script>
 <template>
   <div>
@@ -19,10 +39,10 @@ export default {
       <RouterLink to="/about">About</RouterLink>
       <RouterLink to="/questions">Questions</RouterLink>
       <RouterLink to="/register">Registration</RouterLink>
-      <RouterLink to="/login">Login</RouterLink>
-      <a href="#" @click="logout">Logout</a>
+      <a v-if="logged_in" href="#" @click="logout">Logout</a>
+      <RouterLink v-else to="/login">Login</RouterLink>
     </nav>
-    <hr>
+    <hr />
   </div>
 </template>
 <style scoped>
