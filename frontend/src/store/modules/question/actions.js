@@ -9,9 +9,6 @@ export const getQuestions = ({ commit }) => {
 };
 
 export const getQuestion = ({ commit }, id) => {
-  console.log('Single question Action.');
-  console.log(store.state.access_token);
-
   Question.show(id).then((response) => {
     commit("SET_QUESTION", response.data);
   });

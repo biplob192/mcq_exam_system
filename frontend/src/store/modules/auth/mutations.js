@@ -27,3 +27,16 @@ export const SET_LOGIN_INFO = (state, response) => {
   // console.log(response.data);
   console.log('root.access_token: ' + root.access_token);
 };
+
+export const SET_TOKEN = (state, response) => {
+  let root = response.rootState;
+  let accessToken = response.access_token;
+
+  root.access_token = accessToken;
+  state.access_token = accessToken;
+
+  localStorage.setItem("access_token", accessToken);
+
+  // console.log(root.access_token);
+  // console.log(state.access_token);
+};
