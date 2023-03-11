@@ -4,10 +4,10 @@ export const login = ({ commit, dispatch, rootState }, data) => {
   return Auth.login(data).then((response) => {
     var data = response.data;
     commit("SET_LOGIN_INFO", { rootState, data });
-    
+
     // Dispatch can set rootState as wel as localStorage
     // dispatch("setTokens", data);
-    
+
     return JSON.stringify(response);
   });
 };

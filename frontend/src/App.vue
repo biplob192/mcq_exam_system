@@ -7,7 +7,7 @@ import NavBar from "./components/NavBar.vue";
 <template>
   <NavBar />
   <RouterView />
-  <TestCom msg="You did it!" />
+  <!-- <TestCom msg="You did it!" /> -->
 </template>
 
 <style></style>

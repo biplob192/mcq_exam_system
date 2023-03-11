@@ -1,15 +1,16 @@
 <script>
 import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
 import Question from "../services/api/QuestionApi";
+import axios from "axios";
 
 export default {
   name: "HomeView",
 
   data() {
     return {
-      // data: "Data",
-      base_url: this.$store.state.baseUrl,
       singleQuestion: "",
+      base_url: this.$store.state.baseUrl,
+      access_token_local: localStorage.getItem("access_token"),
     };
   },
 
@@ -24,6 +25,7 @@ export default {
     // Method 02
     ...mapState({
       user: "user",
+      access_token: "access_token",
       // questions: "questions",
       // question: (state) => state.question.question,
     }),
@@ -33,7 +35,6 @@ export default {
   },
 
   mounted() {
-    // this.index();
     // this.getTest();
 
     // this.module();
@@ -41,8 +42,10 @@ export default {
     // this.$store.dispatch("sample/sampleAction");
 
     // this.getQuestions();
+    // this.access_token_local = localStorage.getItem("access_token");
     this.getQuestion(1);
-    this.getSingleQuestion(1);
+    // this.getSingleQuestion(1);
+    // this.getQuestionTest();
 
     // console.log("API base URL from mounted is: " + this.base_url);
   },
@@ -62,17 +65,12 @@ export default {
     //   getQuestion: "question/getQuestion",
     // }),
 
-    index() {
-      // console.log("Inside index.");
-      // console.log("API base URL is: " + this.base_url);
-    },
-
     getSingleQuestion(id) {
       Question.show(id)
         .then((response) => {
           this.singleQuestion = response.data.data;
-          // console.log(this.singleQuestion);
 
+          console.log(this.singleQuestion);
           // let myTarget = JSON.parse(JSON.stringify(this.singleQuestion));
           // console.log(myTarget);
         })
@@ -81,16 +79,17 @@ export default {
         });
     },
 
-    add: async function () {
-      console.log("Inside module.");
-
-      try {
-        await this.$store.dispatch("sample/sampleAction");
-        console.log("ok");
-      } catch (e) {
-        console.log(e);
-      }
-    },
+    // getQuestionTest: function () {
+    //   axios.defaults.headers.common["Authorization"] = "Bearer " + this.access_token;
+    //   axios
+    //     .get("http://127.0.0.1:8000/api/questions/1")
+    //     .then((response) => {
+    //       console.log(response);
+    //     })
+    //     .catch((errors) => {
+    //       console.log(errors);
+    //     });
+    // },
 
     module() {
       console.log("Inside module.");
@@ -110,8 +109,12 @@ export default {
 <template>
   <h1>Home Page</h1>
   {{ questions != "" ? questions : "Questions not set yet!!" }}
-  {{ singleQuestion }}
-  <br>
-  <br>
+  <!-- {{ singleQuestion }} -->
+  <br />
+  <br />
+  access_token From root state: {{ access_token }} <br />
+  access_token From Local: {{ access_token_local }} <br />
+  <br />
+  <br />
   {{ question }}
 </template>

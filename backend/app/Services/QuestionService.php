@@ -55,7 +55,7 @@ class QuestionService extends BaseController
     public function show($id)
     {
         $question = Question::with(['options', 'option', 'answer',])->where('status', 1)->find($id);
-        return $this->sendResponse($question, 'Question data.');
+        return $this->sendResponse($question, 'Single question data.');
     }
 
     public function destroy($id)

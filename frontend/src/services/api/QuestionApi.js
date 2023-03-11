@@ -17,8 +17,8 @@ export default {
 
   update() {
     return Api.put(`${END_POINT}/${id}`);
-     },
-  
+  },
+
   delete() {
     return Api.delete(`${END_POINT}/${id}`);
   },

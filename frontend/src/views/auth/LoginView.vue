@@ -3,7 +3,14 @@
     <form v-on:submit.prevent="handleLogin()">
       <input type="text" name="email" v-model="loginData.email" placeholder="Email" style="margin: 5px" required />
       <br />
-      <input type="password" name="email" v-model="loginData.password" placeholder="Password" style="margin: 5px" required />
+      <input
+        type="password"
+        name="email"
+        v-model="loginData.password"
+        placeholder="Password"
+        style="margin: 5px"
+        required
+      />
       <br />
       <button type="submit" style="margin: 5px">Login</button>
       <span style="margin-left: 10px"><RouterLink to="/register">Register</RouterLink></span>
@@ -33,14 +40,14 @@ export default {
   },
 
   computed: {
-    ...mapState(["access_token"]),
-    ...mapState("auth", ["login_response", "user_info"]),
+    ...mapState(["access_token", "user_info"]),
+    ...mapState("auth", ["login_response"]),
   },
 
   mounted() {
     console.log("login_response: " + this.login_response);
     console.log("access_token: " + this.access_token);
-    console.log('Token: ' + localStorage.getItem("access_token"));
+    console.log("Token: " + localStorage.getItem("access_token"));
   },
 
   methods: {
@@ -146,6 +153,10 @@ export default {
           this.$router.push({ name: "home" });
           // window.location.assign("/");
         }
+
+        // console.log("login_response: " + JSON.parse(this.login_response));
+        console.log(JSON.parse(this.login_response));
+        console.log(JSON.parse(this.user_info));
       } catch (e) {
         console.log(e);
       }

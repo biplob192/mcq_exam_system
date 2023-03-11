@@ -14,7 +14,7 @@ export const SET_LOGIN_INFO = (state, response) => {
   localStorage.setItem("refresh_token", refreshToken);
   localStorage.setItem("user_info", JSON.stringify(user));
 
-  //   console.log(user);
+  // console.log(user);
   //   console.log(accessToken);
   //   console.log(refreshToken);
 
@@ -24,6 +24,6 @@ export const SET_LOGIN_INFO = (state, response) => {
 
   //   console.log(state.user_info);
 
-    // console.log(response.data);
+  // console.log(response.data);
   console.log('root.access_token: ' + root.access_token);
 };
