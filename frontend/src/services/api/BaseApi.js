@@ -7,11 +7,11 @@ const baseURL = store.state.baseUrl;
 // axios.defaults.headers.common["Authorization"] = "Bearer " + access_token;
 
 export function http(access_token) {
-    return axios.create({
-        baseURL: baseURL,
-        headers: {
-            Accept: "application/json",
-            Authorization: "Bearer " + localStorage.getItem("access_token"),
-        },
-    });
+  return axios.create({
+    baseURL: baseURL,
+    headers: {
+      Accept: "application/json",
+      Authorization: "Bearer " + localStorage.getItem("access_token"),
+    },
+  });
 }

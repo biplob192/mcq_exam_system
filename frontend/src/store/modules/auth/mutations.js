@@ -4,6 +4,7 @@ export const SET_LOGIN_INFO = (state, response) => {
   let accessToken = response.data.data.access_token;
   let refreshToken = response.data.data.refresh_token;
 
+  root.logged_in_status = true;
   root.access_token = accessToken;
   root.refresh_token = refreshToken;
   root.user_info = JSON.stringify(user);
@@ -25,13 +26,14 @@ export const SET_LOGIN_INFO = (state, response) => {
   //   console.log(state.user_info);
 
   // console.log(response.data);
-  console.log('root.access_token: ' + root.access_token);
+  console.log("root.access_token: " + root.access_token);
 };
 
 export const SET_TOKEN = (state, response) => {
   let root = response.rootState;
   let accessToken = response.access_token;
 
+  root.logged_in_status = true;
   root.access_token = accessToken;
   state.access_token = accessToken;
 

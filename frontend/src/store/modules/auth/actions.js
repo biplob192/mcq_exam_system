@@ -13,16 +13,16 @@ export const login = ({ commit, dispatch, rootState }, data) => {
 };
 
 export const attempt = ({ commit, state, rootState }, access_token) => {
-  console.log('Token from attempt: ' + access_token);
+  console.log("Token from attempt: " + access_token);
   if (access_token) {
-    // console.log('Token from attempt: ' + access_token);
+    console.log("Token from attempt: " + access_token);
     // console.log(state);
     // console.log(rootState);
-    commit('SET_TOKEN', { rootState, access_token });
+    commit("SET_TOKEN", { rootState, access_token });
   }
 
   if (!state.token) {
-    return
+    return;
   }
 };
 

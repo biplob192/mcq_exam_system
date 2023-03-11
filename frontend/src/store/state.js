@@ -6,6 +6,7 @@ export default {
 
   access_token: null,
   refresh_token: null,
+  logged_in_status: false,
 
   user_info: "",
 

@@ -1,4 +1,5 @@
 <script>
+import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
 import { RouterLink } from "vue-router";
 
 export default {
@@ -6,12 +7,21 @@ export default {
 
   data() {
     return {
-      logged_in: false,
+      // logged_in: false,
+      // logged_in: this.$store.state.logged_in_status,
     };
   },
 
-  created() {
-    this.setLoggedIn();
+  computed: {
+    ...mapGetters({
+      logged_in: "loginStatus",
+    }),
+  },
+
+  mounted() {
+    // this.setLoggedIn();
+    // console.log(this.$store.state.logged_in_status);
+    console.log(this.logged_in);
   },
 
   methods: {
