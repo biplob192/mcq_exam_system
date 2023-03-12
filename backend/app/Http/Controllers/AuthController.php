@@ -29,6 +29,7 @@ class AuthController extends BaseController
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email|unique:users',
+            'mobile' => 'required|size:12|unique:users',
             'password' => [
                 'required',
                 'confirmed',
@@ -40,7 +41,7 @@ class AuthController extends BaseController
         ]);
 
         if ($validator->fails()) {
-            return $this->sendError('Validation Error.', $validator->errors());
+            return $this->sendError('Validation Error.', $validator->errors(), 422);
         }
 
         DB::beginTransaction();
@@ -74,7 +75,7 @@ class AuthController extends BaseController
         ]);
 
         if ($validator->fails()) {
-            return $this->sendError('Validation Error.', $validator->errors());
+            return $this->sendError('Validation Error.', $validator->errors(), 422);
         }
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {

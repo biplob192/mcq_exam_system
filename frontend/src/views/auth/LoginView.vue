@@ -3,14 +3,7 @@
     <form v-on:submit.prevent="handleLogin()">
       <input type="text" name="email" v-model="loginData.email" placeholder="Email" style="margin: 5px" required />
       <br />
-      <input
-        type="password"
-        name="email"
-        v-model="loginData.password"
-        placeholder="Password"
-        style="margin: 5px"
-        required
-      />
+      <input type="password" name="email" v-model="loginData.password" placeholder="Password" style="margin: 5px" required />
       <br />
       <button type="submit" style="margin: 5px">Login</button>
       <span style="margin-left: 10px"><RouterLink to="/register">Register</RouterLink></span>
@@ -22,10 +15,9 @@
 import axios from "axios";
 import Auth from "../../services/api/AuthApi";
 import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
-import { parse } from "@vue/compiler-dom";
 
 export default {
-  name: "MyLogin",
+  name: "LoginView",
   components: {},
   data() {
     return {
@@ -45,9 +37,9 @@ export default {
   },
 
   mounted() {
-    console.log("login_response: " + this.login_response);
-    console.log("access_token: " + this.access_token);
-    console.log("Token: " + localStorage.getItem("access_token"));
+    // console.log("login_response: " + this.login_response);
+    // console.log("access_token: " + this.access_token);
+    // console.log("Token: " + localStorage.getItem("access_token"));
   },
 
   methods: {
@@ -155,8 +147,8 @@ export default {
         }
 
         // console.log("login_response: " + JSON.parse(this.login_response));
-        console.log(JSON.parse(this.login_response));
-        console.log(JSON.parse(this.user_info));
+        // console.log(JSON.parse(this.login_response));
+        // console.log(JSON.parse(this.user_info));
       } catch (e) {
         console.log(e);
       }

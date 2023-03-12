@@ -18,12 +18,6 @@ export default {
     }),
   },
 
-  mounted() {
-    // this.setLoggedIn();
-    // console.log(this.$store.state.logged_in_status);
-    console.log(this.logged_in);
-  },
-
   methods: {
     logout() {
       console.log("Logout Clicked!!");
@@ -34,11 +28,11 @@ export default {
 
       window.location.assign("/login");
     },
-    setLoggedIn() {
-      if (localStorage.getItem("access_token")) {
-        this.logged_in = true;
-      }
-    },
+    // setLoggedIn() {
+    //   if (localStorage.getItem("access_token")) {
+    //     this.logged_in = true;
+    //   }
+    // },
   },
 };
 </script>
@@ -48,9 +42,9 @@ export default {
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/about">About</RouterLink>
       <RouterLink to="/questions">Questions</RouterLink>
-      <RouterLink to="/register">Registration</RouterLink>
-      <a v-if="logged_in" href="#" @click="logout">Logout</a>
-      <RouterLink v-else to="/login">Login</RouterLink>
+      <RouterLink v-show="!logged_in" to="/register">Registration</RouterLink>
+      <a v-show="logged_in" href="#" @click="logout">Logout</a>
+      <RouterLink v-show="!logged_in" to="/login">Login</RouterLink>
     </nav>
     <hr />
   </div>

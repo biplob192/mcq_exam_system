@@ -12,12 +12,17 @@ export const login = ({ commit, dispatch, rootState }, data) => {
   });
 };
 
+export const register = ({ commit, dispatch, rootState }, data) => {
+  return Auth.register(data).then((response) => {
+    var data = response.data;
+    commit("SET_LOGIN_INFO", { rootState, data });
+
+    return JSON.stringify(response);
+  });
+};
+
 export const attempt = ({ commit, state, rootState }, access_token) => {
-  console.log("Token from attempt: " + access_token);
   if (access_token) {
-    console.log("Token from attempt: " + access_token);
-    // console.log(state);
-    // console.log(rootState);
     commit("SET_TOKEN", { rootState, access_token });
   }
 
@@ -37,6 +42,4 @@ export const setTokens = (state, response) => {
 
   localStorage.setItem("access_token", accessToken);
   localStorage.setItem("refresh_token", refreshToken);
-
-  console.log(user);
 };

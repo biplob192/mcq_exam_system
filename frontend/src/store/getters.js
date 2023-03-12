@@ -3,5 +3,5 @@ export const countStudents = (state) => {
 };
 
 export const loginStatus = (state) => {
-  return state.logged_in_status;
+  return state.logged_in;
 };
