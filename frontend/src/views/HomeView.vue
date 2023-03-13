@@ -32,22 +32,26 @@ export default {
 
     // Method 03
     ...mapState("question", ["question", "questions"]),
+
+    ...mapGetters({
+      logged_in: "loginStatus",
+    }),
   },
 
   mounted() {
     // this.getTest();
-
     // this.module();
     // this.sampleAction();
     // this.$store.dispatch("sample/sampleAction");
-
+    // this.getQuestion(1);
     // this.getQuestions();
     // this.access_token_local = localStorage.getItem("access_token");
-    this.getQuestion(1);
     // this.getSingleQuestion(1);
     // this.getQuestionTest();
-
     // console.log("API base URL from mounted is: " + this.base_url);
+    if (this.logged_in) {
+      this.getQuestion(1);
+    }
   },
 
   methods: {
