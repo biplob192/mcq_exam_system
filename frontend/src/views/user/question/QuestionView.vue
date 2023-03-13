@@ -29,6 +29,8 @@ export default {
 </script>
 <template>
   <div><h1>Questions Index</h1></div>
+
+  // Display all questions
   <ul v-for="question in questions" :key="question.id">
     <li>{{ question.question }}</li>
     <ul v-for="option in question.options" :key="option.id">
