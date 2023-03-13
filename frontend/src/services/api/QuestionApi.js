@@ -3,7 +3,8 @@ const END_POINT = "questions";
 
 export default {
   store(data) {
-    return Api.post(END_POINT, data);
+    // return Api.post(END_POINT, data);
+    return http().post(END_POINT, data);
   },
 
   show(id) {
@@ -11,14 +12,14 @@ export default {
   },
 
   all() {
-    return Api.get(END_POINT);
+    return http().get(END_POINT);
   },
 
   update() {
-    return Api.put(`${END_POINT}/${id}`);
+    return http().put(`${END_POINT}/${id}`);
   },
 
   delete() {
-    return Api.delete(`${END_POINT}/${id}`);
+    return http().delete(`${END_POINT}/${id}`);
   },
 };

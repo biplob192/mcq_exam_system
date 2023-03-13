@@ -21,6 +21,7 @@ class QuestionService extends BaseController
 
     public function store($request)
     {
+        // return $request;
         DB::beginTransaction();
         try {
             // 01. Storing question question
@@ -43,6 +44,7 @@ class QuestionService extends BaseController
             $question->save();
 
             DB::commit();
+            $question = Question::with(['options', 'option', 'answer',])->where('status', 1)->find($question->id);
             return $this->sendResponse($question, 'New question added successfully.', 201);
         } catch (Exception $e) {
             DB::rollBack();

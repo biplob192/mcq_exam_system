@@ -13,3 +13,12 @@ export const getQuestion = ({ commit }, id) => {
     commit("SET_QUESTION", response.data);
   });
 };
+
+export const storeQuestion = ({ commit, dispatch, rootState }, data) => {
+  return Question.store(data).then((response) => {
+    var data = response.data;
+    commit("ADD_QUESTION", { data });
+
+    return JSON.stringify(response);
+  });
+};
