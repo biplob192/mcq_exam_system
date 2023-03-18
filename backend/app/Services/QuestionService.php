@@ -34,6 +34,10 @@ class QuestionService extends BaseController
 
             // Finding the right option id
             $rightOptionID = Option::where('option', $request->right_option)->where('question_id', $question->id)->pluck('id')->first();
+            if (!$rightOptionID) {
+                // return 'ok';
+                throw new Exception("Right option does not exist!", 404);
+            }
 
             // 03. Storing answer
             $answer = Answer::create(['question_id' => $question->id, 'option_id' => $rightOptionID]);

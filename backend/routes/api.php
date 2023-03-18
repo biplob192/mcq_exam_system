@@ -5,14 +5,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\ExportImportController;
 
 // Auth Route Start
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/refresh', [AuthController::class, 'refresh'])->middleware(['auth:sanctum', 'refreshAbility']);
 
-
-// Route::get('/subjects', [SubjectController::class, 'index'])->middleware(['auth:sanctum']);
 
 Route::middleware(['auth:sanctum', 'accessAbility'])->group(function () {
     Route::get('/token', [AuthController::class, 'tokenStatus']);
@@ -34,5 +33,10 @@ Route::middleware(['auth:sanctum', 'accessAbility'])->group(function () {
     Route::put('/questions/{id}', [QuestionController::class, 'update']);
     Route::delete('/questions/{id}', [QuestionController::class, 'destroy']);
     // Questions Route End
+
+    // Bulk Import Route Start
+    Route::post('/import/questions', [ExportImportController::class, 'importQuestions']);
+
+    // Bulk Import Route End
 
 });

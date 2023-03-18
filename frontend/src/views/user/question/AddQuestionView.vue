@@ -53,6 +53,13 @@ export default {
         }
       } catch (e) {
         console.log(e);
+
+        if (e.response.status == 401) {
+          alert('User not logged in!');
+        }
+        if (e.response.status == 500) {
+          alert(e.response.data.data);
+        }
       }
     },
 
