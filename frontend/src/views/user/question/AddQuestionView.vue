@@ -73,6 +73,7 @@ export default {
       <input type="text" name="options" v-model="formData.options['1']" placeholder="Question option 02" style="margin: 5px" required />
       <input type="text" name="options" v-model="formData.options['2']" placeholder="Question option 03" style="margin: 5px" required />
       <input type="text" name="options" v-model="formData.options['3']" placeholder="Question option 04" style="margin: 5px" required />
+      <br />
       <input type="text" name="right_option" v-model="formData.right_option" placeholder="Right option" style="margin: 5px" required />
       <br />
       <button type="submit" style="margin: 5px">Save</button>
